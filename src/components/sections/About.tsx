@@ -156,7 +156,7 @@ export function About() {
 
             <a
               href={`mailto:${personal.email}`}
-              className="group flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
+              className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
             >
               <ContactBrandIcon name="Email" />
               <div className="min-w-0">

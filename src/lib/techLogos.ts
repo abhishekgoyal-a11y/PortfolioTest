@@ -32,7 +32,8 @@ type IconEntry = { path: string; hex: string };
 
 export type TechLogo =
   | { kind: "svg"; path: string; color: string; viewBox?: string }
-  | { kind: "image"; src: string };
+  | { kind: "image"; src: string }
+  | { kind: "themed-image"; light: string; dark: string };
 
 const map: Record<string, IconEntry> = {
   Selenium: siSelenium,
@@ -76,9 +77,17 @@ const imageLogos: Record<string, string> = {
   Playwright: "/tech/playwright.svg",
   TestNG: "/tech/testng.svg",
   RestAssured: "/tech/restassured.svg",
-  GitHub: "/tech/github.svg",
   LinkedIn: "/tech/linkedin.svg",
 };
+
+const themeImageLogos: Record<string, { light: string; dark: string }> = {
+  GitHub: {
+    light: "/tech/github-light.svg",
+    dark: "/tech/github.svg",
+  },
+};
+
+export type LogoTheme = "light" | "dark";
 
 const neutralOverrides = new Set([
   "Kafka",
@@ -105,15 +114,34 @@ function resolveKey(name: string): string {
   return aliases[name] ?? name;
 }
 
-function resolveSvgColor(key: string, name: string, hex: string): string {
+function resolveSvgColor(
+  key: string,
+  name: string,
+  hex: string,
+  theme: LogoTheme
+): string {
+  if (theme === "light") {
+    if (neutralOverrides.has(key) || neutralOverrides.has(name)) return "currentColor";
+    if (relativeLuminance(hex) < 0.35) return "currentColor";
+    return `#${hex}`;
+  }
+
   if (onDarkBrandColors[key]) return onDarkBrandColors[key];
   if (neutralOverrides.has(key) || neutralOverrides.has(name)) return "currentColor";
   if (relativeLuminance(hex) < 0.35) return "currentColor";
   return `#${hex}`;
 }
 
-export function getTechLogo(name: string): TechLogo | null {
+export function getTechLogo(
+  name: string,
+  theme: LogoTheme = "dark"
+): TechLogo | null {
   const key = resolveKey(name);
+
+  const themed = themeImageLogos[key];
+  if (themed) {
+    return { kind: "themed-image", light: themed.light, dark: themed.dark };
+  }
 
   const imageSrc = imageLogos[key] ?? imageLogos[name];
   if (imageSrc) {
@@ -126,6 +154,6 @@ export function getTechLogo(name: string): TechLogo | null {
   return {
     kind: "svg",
     path: entry.path,
-    color: resolveSvgColor(key, name, entry.hex),
+    color: resolveSvgColor(key, name, entry.hex, theme),
   };
 }

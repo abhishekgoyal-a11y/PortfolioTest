@@ -20,7 +20,7 @@ export function Contact() {
           <div className="flex flex-col gap-4">
             <a
               href={`mailto:${personal.email}`}
-              className="group flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
+              className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
             >
               <ContactBrandIcon name="Email" />
               <div>
@@ -37,7 +37,7 @@ export function Contact() {
               href={personal.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
+              className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
             >
               <ContactBrandIcon name="LinkedIn" />
               <div>
@@ -54,7 +54,7 @@ export function Contact() {
               href={personal.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
+              className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary/40"
             >
               <ContactBrandIcon name="GitHub" />
               <div>

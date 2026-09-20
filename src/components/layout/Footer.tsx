@@ -21,7 +21,7 @@ export function Footer() {
             href={personal.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
           >
             <TechLogo name="GitHub" className="h-4 w-4" />
           </a>
@@ -30,14 +30,14 @@ export function Footer() {
             href={personal.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
           >
             <TechLogo name="LinkedIn" className="h-4 w-4" />
           </a>
           <a
             aria-label={`Send email to ${personal.email}`}
             href={`mailto:${personal.email}`}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
           >
             <TechLogo name="Email" className="h-4 w-4" />
           </a>

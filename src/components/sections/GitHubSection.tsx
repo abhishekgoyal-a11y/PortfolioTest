@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ContactBrandIcon } from "@/components/ui/ContactBrandIcon";
+import { TechLogo } from "@/components/ui/TechLogo";
 import { Button } from "@/components/ui/button";
 import { personal } from "@/data/personal";
 import { usePrefersReducedMotion } from "@/hooks/useReducedMotion";
@@ -46,9 +48,7 @@ export function GitHubSection() {
         {/* Profile bar */}
         <div className="mb-8 flex flex-col items-start gap-3 rounded-2xl border border-border bg-card p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <Github className="h-4.5 w-4.5" />
-            </div>
+            <ContactBrandIcon name="GitHub" />
             <div>
               <div className="text-sm font-semibold">
                 {personal.links.github.replace("https://", "")}
@@ -88,11 +88,11 @@ export function GitHubSection() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.35, delay: i * 0.06 }}
               whileHover={reduced ? undefined : { y: -3 }}
-              className="flex flex-col gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-shadow hover:shadow-md"
+              className="flex cursor-pointer flex-col gap-3 rounded-xl border border-border bg-card p-5 shadow-sm transition-shadow hover:shadow-md"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <Github className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <TechLogo name="GitHub" className="h-4 w-4 shrink-0" />
                   {repo.name}
                 </div>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground" />

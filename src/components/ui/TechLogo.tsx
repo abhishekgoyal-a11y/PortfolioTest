@@ -1,4 +1,8 @@
-import { getTechLogo } from "@/lib/techLogos";
+"use client";
+
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+import { getTechLogo, type LogoTheme } from "@/lib/techLogos";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -6,9 +10,35 @@ type Props = {
   className?: string;
 };
 
+function subscribe() {
+  return () => {};
+}
+
 export function TechLogo({ name, className }: Props) {
-  const logo = getTechLogo(name);
+  const { resolvedTheme } = useTheme();
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
+  const isLight = mounted && resolvedTheme === "light";
+  const theme: LogoTheme = isLight ? "light" : "dark";
+
+  const logo = getTechLogo(name, theme);
   if (!logo) return null;
+
+  if (logo.kind === "themed-image") {
+    return (
+      <img
+        src={logo.dark}
+        alt=""
+        className={cn(
+          "h-3 w-3 shrink-0 object-contain",
+          isLight && "invert",
+          className
+        )}
+        aria-hidden
+        loading="lazy"
+        decoding="async"
+      />
+    );
+  }
 
   if (logo.kind === "image") {
     return (
