@@ -16,7 +16,7 @@ import {
 import { ResumeButton } from "@/components/ui/ResumeButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { cn, scrollToId } from "@/lib/utils";
+import { cn, getInitials, scrollToId } from "@/lib/utils";
 import { personal } from "@/data/personal";
 
 type NavLink = { id: string; label: string };
@@ -73,7 +73,7 @@ export function Navbar() {
           className="flex items-center gap-2 font-heading text-base font-bold tracking-tight"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-            AG
+            {getInitials(personal.name)}
           </span>
           <span className="hidden sm:inline">{personal.name}</span>
         </Link>

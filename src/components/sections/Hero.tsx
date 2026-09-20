@@ -35,7 +35,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[92vh] items-center overflow-hidden pt-24"
+      className="relative flex min-h-[92vh] items-center overflow-hidden pt-24 pb-16 sm:pb-20 lg:pb-24"
       aria-label="Introduction"
     >
       {/* Backgrounds */}
